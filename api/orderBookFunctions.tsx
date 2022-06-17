@@ -92,6 +92,8 @@ export const buyTokenSignature = (wallet:Wallet, pactId:string, buyer:string, bu
     return result
 }
 
-export const withdrawTokenSignature = ()=>{
-
+export const withdrawTokenSignature = (wallet:Wallet, pactId:string, saleObj:Sale)=>{
+  const{ tokenId, seller, amount,timeout,saleId,price} = saleObj
+  let result = signContHftCommand(saleId, 0, true, wallet,"",{},[])
+  return result
 }

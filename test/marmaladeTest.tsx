@@ -80,7 +80,7 @@ export const testOfferTokenListen = async (txReqKey:string)=>{
 const saleObj = {"amount": 1,
 "buyer": "",
 "price": 2,
-"saleId": "bcEMPxezmsW2R0KMm7TkLh8PCkDf2zUFFZ_QMHdZMnI",
+"saleId": "KmZddf1Kpe42dH8cjhbZVZYWc019SWI48r1fFtOvCuA",
 "seller": "mike.tanto",
 "timeout": 2299000,
 "tokenId": "MKOCOIN"}
@@ -90,3 +90,6 @@ export const testBuyToken = ()=>{
    console.log(buyTokenSignature)
 }
 
+export const testWithdrawToken = ()=>{
+    const withdrawTokenSignature = Marmalade.transaction.withdrawTokenSignature(testWallet,"KmZddf1Kpe42dH8cjhbZVZYWc019SWI48r1fFtOvCuA",saleObj)
+}
