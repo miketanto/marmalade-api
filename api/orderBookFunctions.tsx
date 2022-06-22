@@ -15,19 +15,17 @@ import {Wallet, Guard, Sale} from '../types/customTypes'
 export const saleTokenSignature = (
   wallet:Wallet,
   seller:string,
-  amount:string|Number,
-  price:string|Number, 
+  amount:Number,
+  price:Number, 
   recipient:string, 
   recipientGrd:Guard|string, 
   tokenId:string, 
   timeLimit:Number,
   fungibleTokenContract:string)=>{
         let result
-        const parsedPrice = typeof(price) === "string"? Number.parseFloat(price):price
-        const parsedAmount = typeof(amount) === "string"? Number.parseFloat(amount):amount
         const parsedGuard = typeof(recipientGrd) === "string"? JSON.parse(recipientGrd):recipientGrd
         const quote = {
-          "price": parsedPrice,
+          "price": price,
           "recipient": recipient,
           "recipient-guard": parsedGuard,
           "fungible": {
@@ -49,7 +47,7 @@ export const saleTokenSignature = (
             timeout: timeLimit,
             quote
           },
-          [SigData.mkCap(`${hftAPI.contractAddress}.OFFER`,[tokenId, seller, parsedAmount , {int: timeLimit}])]
+          [SigData.mkCap(`${hftAPI.contractAddress}.OFFER`,[tokenId, seller, amount , {int: timeLimit}])]
         );
         return result
 }
